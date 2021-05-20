@@ -1,13 +1,12 @@
 /**
  * Receive targetTime from user if targetTime and currentTime is same scan file stockData and print out list of lack of stock
  * @author LeeJiHo
- * @version alpha 0.2.0
- * @date 2021.05.19
+ * @version alpha 0.3.0
+ * @date 2021.05.20
  */
 package Program;
 import java.util.Date;
 import java.util.LinkedList;
-import java.util.Scanner;
 import java.text.SimpleDateFormat;
 import java.io.BufferedReader;
 import java.io.File;
@@ -36,7 +35,7 @@ public class realTime {
 	}
 	
 	//Check target time and current time is same if same return 1 else return 0
-	private int isSameToTagetTime()
+	public int isSameToTagetTime()
 	{
 		this.setCurrentTime();//set current time
 		
@@ -53,9 +52,10 @@ public class realTime {
 	//Scan data file and find stock which is lack of left number
 	public void findLackStock()
 	{
-		LinkedList<String> list= new LinkedList<String>();
+		LinkedList<String> list= new LinkedList<String>();//implement linked-list
 		String line;
 		
+		//Read 1 line text from file if it is out of stock add to linked-list
 		try
 		{
 			File data = new File("Stocks.txt");
@@ -66,9 +66,11 @@ public class realTime {
 			{
 				if(isOutOfStock(line))
 				{
-					list.add(line);
+					list.add(line);//add to linked-list
 				}				
 			}
+			
+			buffer.close();
 		}catch(FileNotFoundException e) {
 			
 		}catch(IOException e) {
@@ -83,7 +85,7 @@ public class realTime {
 	{
 		String[ ] data = line.split("|");
 		
-		if(Integer.getInteger(data[1]) < 5)
+		if(Integer.parseInt(data[1]) < 5)
 		{
 			return true;
 		}
@@ -93,32 +95,8 @@ public class realTime {
 		}
 	}
 	
-	public void waitForUserExit()
-	{
-		Scanner keyboard = new Scanner(System.in);
-		
-		System.out.println("Time checker is running if you stop please enter any integer number");
-		while(keyboard.hasNextInt() || this.isSameToTagetTime() == 1)
-		{
-			if(this.isSameToTagetTime() == 1)
-			{
-				System.out.println("Times up");
-				break;
-			}
-			else
-			{
-				System.out.println("End time counting");
-				break;
-			}
-		}
-	}
-	
 	public static void main(String args[])
 	{
-		realTime test = new realTime();
 		
-		test.setTargetTime("09:04:30");
-		test.waitForUserExit();
 	}
-	
 }
