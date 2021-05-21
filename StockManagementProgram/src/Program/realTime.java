@@ -85,7 +85,7 @@ public class realTime{
 	//check stock data it is out of stock
 	public boolean isOutOfStock(String line)
 	{
-		String[ ] data = line.split("|");
+		String[ ] data = line.split(",");
 		
 		if(Integer.parseInt(data[1]) < 5)
 		{

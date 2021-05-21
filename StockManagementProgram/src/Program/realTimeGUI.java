@@ -3,7 +3,6 @@ package Program;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 
 public class realTimeGUI extends JFrame{
@@ -19,20 +18,18 @@ public class realTimeGUI extends JFrame{
 	{
 		this.setDefaultCloseOperation(
 				JFrame.EXIT_ON_CLOSE);//Close frame
-		this.setSize(600,300);
-		this.setVisible(true);
+		this.setSize(600,300);//set frame size
+		this.setVisible(true);//set frame to visible
 		
 		//Layout
-		this.setLayout(new FlowLayout());
+		this.setLayout(new FlowLayout());//set frame layout
 		add(new JLabel("Real time timer"));
 		
 		JPanel panel1 = new JPanel();
 		panel1.add(new JLabel("Target time"));
-		panel1.add(textfield);
+		panel1.add(textfield);//add textfield to frame
 		this.add(panel1);
-		add(b1);
-		
-		this.setVisible(true);
+		add(b1);//add button b1 to frame
 	}
 	
 	public String dataReturner()
@@ -49,15 +46,16 @@ public class realTimeGUI extends JFrame{
 	{
 		frame.setDefaultCloseOperation(
 				JFrame.EXIT_ON_CLOSE);//Close frame
-		frame.setSize(1000, 600);
+		frame.setSize(1000, 600);//set frame size
 		
-		TextArea text = new TextArea(20,50);
+		TextArea text = new TextArea(20,50);//set text area
+		frame.add(text);//add text area to frame
 		
-		text.append(targetString + "\n");
-		frame.add(text);
-		frame.setVisible(true);
+		text.append(targetString + "\n");//print on text area
+		frame.setVisible(true);//set frame to visible
 	}
-	class ac implements ActionListener{
+	
+	class ac implements ActionListener{//set action when press button b1
 		
 		@Override
 		public void actionPerformed(ActionEvent e)
@@ -68,8 +66,9 @@ public class realTimeGUI extends JFrame{
 			}
 		}
 	}
+	
 	public static void main(String[] args) {
-
+		
 	}
 
 }
