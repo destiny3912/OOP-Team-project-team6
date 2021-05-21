@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-<<<<<<< HEAD
-<<<<<<< HEAD
-	<name>TeamProject</name>
-=======
-	<name>OOPTermProjectTeam6</name>
->>>>>>> refs/remotes/origin/develop
-=======
-	<name>OOPTermProjectTeam6</name>
->>>>>>> refs/remotes/origin/master
+	<name>StockManagementProgram</name>
 	<comment></comment>
 	<projects>
 	</projects>
