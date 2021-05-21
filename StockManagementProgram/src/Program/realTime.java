@@ -16,9 +16,11 @@ import java.io.IOException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
-public class realTime {
+
+public class realTime{
 	private String currentTime;// store current time variable
 	private String targetTime;// store target time which received from user
+	public LinkedList<String> list= new LinkedList<String>();//implement linked-list
 	
 	//set current time only Hour/minute/seconds
 	private void setCurrentTime()
@@ -32,10 +34,11 @@ public class realTime {
 	public void setTargetTime(String newTargetTime)//set Target time
 	{
 		targetTime = newTargetTime;
+		System.out.println(targetTime);
 	}
 	
 	//Check target time and current time is same if same return 1 else return 0
-	public int isSameToTagetTime()
+	public int isSameToTargetTime()
 	{
 		this.setCurrentTime();//set current time
 		
@@ -52,7 +55,6 @@ public class realTime {
 	//Scan data file and find stock which is lack of left number
 	public void findLackStock()
 	{
-		LinkedList<String> list= new LinkedList<String>();//implement linked-list
 		String line;
 		
 		//Read 1 line text from file if it is out of stock add to linked-list
@@ -95,8 +97,40 @@ public class realTime {
 		}
 	}
 	
+	
 	public static void main(String args[])
 	{
+		realTimeGUI gui = new realTimeGUI();
+		realTime data = new realTime();
+		String time = "0";
 		
+		gui.createFrame();
+		
+		while(time == "0")
+		{
+			gui.dataReceiver();
+			time = gui.dataReturner();
+			if(time != "0")
+			{
+				break;
+			}
+		}
+		
+		data.setTargetTime(time);
+		
+		while(data.isSameToTargetTime() == 0)
+		{
+			if(data.isSameToTargetTime() == 1)
+			{
+				break;
+			}
+		}
+		
+		data.findLackStock();
+		
+		for(int index = 0; index < data.list.size(); index++)
+		{
+			gui.printOnGUI(data.list.get(index));
+		}
 	}
 }
