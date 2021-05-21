@@ -100,37 +100,6 @@ public class realTime{
 	
 	public static void main(String args[])
 	{
-		realTimeGUI gui = new realTimeGUI();
-		realTime data = new realTime();
-		String time = "0";
 		
-		gui.createFrame();
-		
-		while(time == "0")
-		{
-			gui.dataReceiver();
-			time = gui.dataReturner();
-			if(time != "0")
-			{
-				break;
-			}
-		}
-		
-		data.setTargetTime(time);
-		
-		while(data.isSameToTargetTime() == 0)
-		{
-			if(data.isSameToTargetTime() == 1)
-			{
-				break;
-			}
-		}
-		
-		data.findLackStock();
-		
-		for(int index = 0; index < data.list.size(); index++)
-		{
-			gui.printOnGUI(data.list.get(index));
-		}
 	}
 }

@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import java.io.*;
 
 public class realTimeGUI extends JFrame{
 	
@@ -11,7 +12,7 @@ public class realTimeGUI extends JFrame{
 	private JButton b1 = new JButton("Enter");
 	private JTextField textfield = new JTextField(20);
 	private ActionListener ac = new ac();
-	private String time = "0";
+	private String time;
 	JTextField name,age;
 	
 	public void createFrame()
@@ -57,12 +58,34 @@ public class realTimeGUI extends JFrame{
 	
 	class ac implements ActionListener{//set action when press button b1
 		
+		realTime data = new realTime();
+		String time;
+		
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
-			if(e.getSource() == b1)
-			{
+			
+			while(e.getSource() == b1)
+			{	
 				time = textfield.getText();
+				
+				data.setTargetTime(time);
+				
+				while(data.isSameToTargetTime() == 0)
+				{
+					if(data.isSameToTargetTime() == 1)
+					{
+						break;
+					}
+				}
+				
+				data.findLackStock();
+				
+				for(int index = 0; index < data.list.size(); index++)
+				{
+					printOnGUI(data.list.get(index));
+				}
+				break;
 			}
 		}
 	}
