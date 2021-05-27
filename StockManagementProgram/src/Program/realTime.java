@@ -69,6 +69,7 @@ public class realTime{
 				if(isOutOfStock(line))
 				{
 					list.add(line);//add to linked-list
+					System.out.println(list.getLast());
 				}				
 			}
 			

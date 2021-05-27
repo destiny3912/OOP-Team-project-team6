@@ -43,16 +43,23 @@ public class realTimeGUI extends JFrame{
 		b1.addActionListener(ac);
 	}
 	
-	public void printOnGUI(String targetString)
+	public void printOnGUI(realTime data)
 	{
+		String target;
+		
 		frame.setDefaultCloseOperation(
 				JFrame.EXIT_ON_CLOSE);//Close frame
 		frame.setSize(1000, 600);//set frame size
 		
 		TextArea text = new TextArea(20,50);//set text area
 		frame.add(text);//add text area to frame
+	
+		for(int index = 0; index < data.list.size(); index++)
+		{
+			target = data.list.get(index);
+			text.append((index + 1) + ": " + target + "\n");//print on text area
+		}
 		
-		text.append(targetString + "\n");//print on text area
 		frame.setVisible(true);//set frame to visible
 	}
 	
@@ -81,10 +88,8 @@ public class realTimeGUI extends JFrame{
 				
 				data.findLackStock();
 				
-				for(int index = 0; index < data.list.size(); index++)
-				{
-					printOnGUI(data.list.get(index));
-				}
+				printOnGUI(data);
+				
 				break;
 			}
 		}
