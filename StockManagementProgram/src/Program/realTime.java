@@ -66,7 +66,7 @@ public class realTime{
 			
 			while((line = buffer.readLine()) != null)
 			{
-				if(isOutOfStock(line))
+				if(isOutOfStock(line) == true)
 				{
 					list.add(line);//add to linked-list
 					System.out.println(list.getLast());
@@ -75,12 +75,9 @@ public class realTime{
 			
 			buffer.close();
 		}catch(FileNotFoundException e) {
-			
 		}catch(IOException e) {
 			System.out.println(e);
-		}
-		
-		
+		}	
 	}
 	
 	//check stock data it is out of stock
