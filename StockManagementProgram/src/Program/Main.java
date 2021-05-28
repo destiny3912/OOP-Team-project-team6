@@ -28,7 +28,7 @@ public class Main extends JFrame{
 		p2.add(b2);
 		p3.add(b3);
 		
-		b1.addActionListener(new ActionListener() {
+		b1.addActionListener(new ActionListener() { //insert
 			
 			@Override
 			public void actionPerformed(ActionEvent e)
@@ -37,16 +37,22 @@ public class Main extends JFrame{
 			}
 		});
 		
-		b2.addActionListener(new ActionListener() {
+		b2.addActionListener(new ActionListener() { //search
 			
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				//set insert
+				searchGUI gui = new searchGUI();
+				Search data = new Search();
+				String stock;
+
+				gui.createFrame();
+				
+				gui.dataReceiver();
 			}
 		});
 		
-		b3.addActionListener(new ActionListener() {
+		b3.addActionListener(new ActionListener() { //realTIme
 			
 			@Override
 			public void actionPerformed(ActionEvent e)
