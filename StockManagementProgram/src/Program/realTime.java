@@ -69,14 +69,14 @@ public class realTime{
 				if(isOutOfStock(line) == true)
 				{
 					list.add(line);//add to linked-list
-					System.out.println(list.getLast());
 				}				
 			}
 			
 			buffer.close();
 		}catch(FileNotFoundException e) {
+			System.out.println("Cannot found file : " + e.getMessage());
 		}catch(IOException e) {
-			System.out.println(e);
+			System.out.println("Something wrong in file : " + e.getMessage());
 		}	
 	}
 	
@@ -85,7 +85,7 @@ public class realTime{
 	{
 		String[ ] data = line.split(",");
 		
-		if(Integer.parseInt(data[1]) < 5)
+		if(Integer.parseInt(data[1]) < 50)
 		{
 			return true;
 		}
