@@ -1,3 +1,9 @@
+/**
+ * It is a class to create GUI for RealTime class
+ * @author LeeJiHo
+ * @version alpha 0.5.0
+ * @date 2021.06.01
+ */
 package Program;
 
 import java.awt.*;
@@ -21,13 +27,13 @@ public class realTimeGUI extends JFrame{
 				JFrame.EXIT_ON_CLOSE);//Close frame
 		this.setSize(600,300);//set frame size
 		this.setVisible(true);//set frame to visible
-		
+		this.setName("RealTime Timer");
 		//Layout
 		this.setLayout(new FlowLayout());//set frame layout
 		add(new JLabel("Real time timer"));
 		
 		JPanel panel1 = new JPanel();
-		panel1.add(new JLabel("Target time"));
+		panel1.add(new JLabel("Target time(24 Hour Style HH:mm:ss)"));
 		panel1.add(textfield);//add textfield to frame
 		this.add(panel1);
 		add(b1);//add button b1 to frame

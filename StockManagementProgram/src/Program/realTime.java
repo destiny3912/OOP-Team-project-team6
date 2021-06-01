@@ -1,8 +1,8 @@
 /**
  * Receive targetTime from user if targetTime and currentTime is same scan file stockData and print out list of lack of stock
  * @author LeeJiHo
- * @version alpha 0.3.0
- * @date 2021.05.20
+ * @version alpha 0.5.0
+ * @date 2021.06.01
  */
 package Program;
 import java.util.Date;
