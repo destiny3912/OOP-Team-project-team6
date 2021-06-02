@@ -54,11 +54,12 @@ public class searchGUI extends JFrame{
 		TextArea text = new TextArea(20,50);//set text area
 		frame.add(text);//add text area to frame
 	
-		/*for(int index = 0; index < data.line.size(); line++)
+		for(int index = 0; index < data.list.size(); index++)
 		{
-			target = data.line.get(index);
+			target = data.list.get(index);
 			text.append((index + 1) + ": " + target + "\n");//print on text area
-		}*/
+		}
+		//linked list로 searchMethod를 가져와서 연결시켜라
 		
 		frame.setVisible(true);//set frame to visible
 	}
