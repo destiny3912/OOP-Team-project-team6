@@ -74,7 +74,7 @@ public class Main extends JFrame{
 				realTime data = new realTime();
 				String time;
 
-				gui.createFrame();
+				gui.setDialog();
 				
 				gui.dataReceiver();
 			}

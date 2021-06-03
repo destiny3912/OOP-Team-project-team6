@@ -59,7 +59,7 @@ public class searchGUI extends JFrame{
 			target = data.list.get(index);
 			text.append((index + 1) + ": " + target + "\n");//print on text area
 		}
-		//linked list로 searchMethod를 가져와서 연결시켜라
+		//linked list濡� searchMethod瑜� 媛��졇���꽌 �뿰寃곗떆耳쒕씪
 		
 		frame.setVisible(true);//set frame to visible
 	}
@@ -89,3 +89,4 @@ public class searchGUI extends JFrame{
 			}
 		}
 	}
+}
