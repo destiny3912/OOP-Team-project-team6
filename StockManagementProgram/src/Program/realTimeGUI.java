@@ -29,7 +29,7 @@ public class realTimeGUI extends JFrame{
 
 		dialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		dialog.setLayout(new FlowLayout());//set dialog
-		dialog.setSize(600,300);//set dialog size
+		dialog.setSize(640,200);//set dialog size
 		
 		panel1.add(new JLabel("Real time timer"));
 		panel2.add(new JLabel("Target time(24 Hour Style HH:mm:ss)"));

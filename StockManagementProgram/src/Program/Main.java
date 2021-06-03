@@ -25,7 +25,7 @@ public class Main extends JFrame{
 	public void setFrame()
 	{
 		frame.setVisible(true);
-		frame.setSize(640,480);
+		frame.setSize(640,200);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(new FlowLayout());
 		
@@ -56,8 +56,6 @@ public class Main extends JFrame{
 			public void actionPerformed(ActionEvent e)
 			{
 				searchGUI gui = new searchGUI();
-				Search data = new Search();
-				String stock;
 
 				gui.createFrame();
 				
@@ -71,8 +69,6 @@ public class Main extends JFrame{
 			public void actionPerformed(ActionEvent e)
 			{
 				realTimeGUI gui = new realTimeGUI();
-				realTime data = new realTime();
-				String time;
 
 				gui.setDialog();
 				
