@@ -78,13 +78,13 @@ public class realTimeGUI extends JFrame{
 		public void actionPerformed(ActionEvent e)
 		{
 			
-			while(e.getSource() == timeEnter)
+			while(e.getSource() == timeEnter)//버튼이 눌러지면
 			{	
-				time = textfield.getText();
+				time = textfield.getText();//입력된
 				
-				data.setTargetTime(time);
+				data.setTargetTime(time);//realTime class에 targetTime set
 				
-				while(data.isSameToTargetTime() == 0)
+				while(data.isSameToTargetTime() == 0)//현시각이 targetTime과 같으면 루트 탈출
 				{
 					if(data.isSameToTargetTime() == 1)
 					{
@@ -92,9 +92,9 @@ public class realTimeGUI extends JFrame{
 					}
 				}
 				
-				data.findLackStock();
+				data.findLackStock();//설정한 갯수 이하의 Stock을 찾아서
 				
-				printOnGUI(data);
+				printOnGUI(data);//프린트
 				
 				break;
 			}
