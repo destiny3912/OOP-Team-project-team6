@@ -26,4 +26,14 @@ public class stockReadymade {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
+	
+	@Override
+	public String toString() {
+		String str = "======================\n"
+				+ "Name: " + name + "\n"
+				+ "Amount: " + amount + "\n"
+				+ "Category: " + readyMadeCategory + "\n";
+		
+		return str;
+	}
 }
