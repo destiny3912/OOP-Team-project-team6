@@ -50,8 +50,6 @@ public class Search {
 		     
 		     if(stockName[0].trim().compareToIgnoreCase(findStockName[0].trim()) == 0){ //if success find
 		      list.add(line);//add to linked-list
-		      System.out.println("Stock Name: " + stockName[0].trim());
-		      System.out.println("Stock Number: " + stockName[1]);
 		      result= true; //find
 		      break;
 		      }
@@ -65,10 +63,9 @@ public class Search {
 
 		    }
 		
-		if(result == false){ //if fail to search stock 
-		    System.out.println("Fail to find " +findStock);
-		    System.out.println("Don't have " +findStock +" in stock");
-		    }
+		catch(FileNotFoundException e) { //if fail to search stock 
+		    System.out.println("Fail to find " +e.getMessage());
+		}
 		in.close(); //file close
 	}
 	
@@ -83,7 +80,6 @@ public class Search {
 		System.out.println("----Current number of Stock----");
 		while((line = in.readLine()) != null){ //file scan
 			list.add(line);//add to linked-list
-		    System.out.println(line); //file output
 		    }
 			
 		}
