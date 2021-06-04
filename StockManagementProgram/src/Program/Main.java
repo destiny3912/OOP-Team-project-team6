@@ -6,10 +6,12 @@
  */
 package Program;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.Scanner;
 import java.io.*;
+
 public class Main extends JFrame{
 	private JButton insertButton = new JButton("Insert stock data");
 	private JButton searchButton = new JButton("Search stock data");
@@ -26,20 +28,27 @@ public class Main extends JFrame{
 	{
 		frame.setVisible(true);
 		frame.setSize(640,200);
+		frame.setTitle("Stock management program");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLayout(new FlowLayout());
+		frame.setLayout(new GridLayout(2,1));//frame Layout 세로 2칸 가로 1칸의 GridLayout
 		
-		JPanel insertPanel = new JPanel();
-		JPanel searchPanel = new JPanel();
-		JPanel realTimePanel = new JPanel();
+		JPanel textPanel = new JPanel();// 상단 프로그램 설명 텍스트 Panel
+		JPanel buttonPanel = new JPanel();//하단 기능 버튼 집합 Panel
 		
-		frame.add(insertPanel);//button for insert
-		frame.add(searchPanel);//button for search
-		frame.add(realTimePanel);//button realTime
+		JLabel headText = new JLabel("It is a test version");//상단 프로그램 설명 텍스트 : 추후 적절한 텍스트 대체 예정
 		
-		insertPanel.add(insertButton);
-		searchPanel.add(searchButton);
-		realTimePanel.add(realTimeButton);
+		frame.add(textPanel);//frame에 textPanel 추가
+		frame.add(buttonPanel);//frame에 buttonPanel 추가
+		
+		buttonPanel.setLayout(new FlowLayout());//buttonPanel의 Layout == FlowLayout
+		
+		//add buttons to buttonPanel
+		buttonPanel.add(insertButton);
+		buttonPanel.add(searchButton);
+		buttonPanel.add(realTimeButton);
+		
+		//add headText to textPanel
+		textPanel.add(headText);
 		
 		insertButton.addActionListener(new ActionListener() { //insert
 			
