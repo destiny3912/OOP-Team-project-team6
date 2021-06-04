@@ -29,6 +29,7 @@ public class realTimeGUI extends JFrame{
 
 		dialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		dialog.setLayout(new FlowLayout());//set dialog
+		dialog.setTitle("Time Counter");
 		dialog.setSize(640,200);//set dialog size
 		
 		panel1.add(new JLabel("Real time timer"));
@@ -56,8 +57,8 @@ public class realTimeGUI extends JFrame{
 		
 		textDialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);//Close frame
 		textDialog.setSize(1000, 600);//set frame size
-		
-		TextArea text = new TextArea(20,50);//set text area
+		textDialog.setTitle("Result of find lack of stock");
+		TextArea text = new TextArea(1920,1080);//set text area
 		textDialog.add(text);//add text area to frame
 	
 		for(int index = 0; index < data.list.size(); index++)
@@ -67,6 +68,7 @@ public class realTimeGUI extends JFrame{
 		}
 		
 		textDialog.setVisible(true);//set frame to visible
+		
 	}
 	
 	class ac implements ActionListener{//set action when press button b1

@@ -16,6 +16,7 @@ public class Main extends JFrame{
 	private JButton insertButton = new JButton("Insert stock data");
 	private JButton searchButton = new JButton("Search stock data");
 	private JButton realTimeButton = new JButton("Real time count");
+	private JButton refreshButton = new JButton("Refresh");
 	private JFrame frame = new JFrame();
 	
 	/*
@@ -46,6 +47,7 @@ public class Main extends JFrame{
 		buttonPanel.add(insertButton);
 		buttonPanel.add(searchButton);
 		buttonPanel.add(realTimeButton);
+		buttonPanel.add(refreshButton);
 		
 		//add headText to textPanel
 		textPanel.add(headText);
@@ -55,6 +57,11 @@ public class Main extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				//disable after button pressed
+				insertButton.setEnabled(false);
+				searchButton.setEnabled(false);
+				realTimeButton.setEnabled(false);
+				
 				//set insert
 			}
 		});
@@ -64,6 +71,11 @@ public class Main extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				//disable after button pressed
+				insertButton.setEnabled(false);
+				searchButton.setEnabled(false);
+				realTimeButton.setEnabled(false);
+				
 				searchGUI gui = new searchGUI();
 
 				gui.createFrame();
@@ -77,11 +89,27 @@ public class Main extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				//disable after button pressed
+				insertButton.setEnabled(false);
+				searchButton.setEnabled(false);
+				realTimeButton.setEnabled(false);
+				
 				realTimeGUI gui = new realTimeGUI();
 
 				gui.setDialog();
 				
 				gui.dataReceiver();
+			}
+		});
+		
+		refreshButton.addActionListener(new ActionListener() { //search
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				insertButton.setEnabled(true);
+				searchButton.setEnabled(true);
+				realTimeButton.setEnabled(true);
 			}
 		});
 	}
