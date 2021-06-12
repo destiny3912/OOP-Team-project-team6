@@ -32,7 +32,7 @@ public class realTimeGUI extends JFrame{
 		dialog.setTitle("Time Counter");
 		dialog.setSize(640,200);//set dialog size
 		
-		panel1.add(new JLabel("Real time timer"));
+		panel1.add(new JLabel("Set target time to find stocks, which out of stock"));
 		panel2.add(new JLabel("Target time(24 Hour Style HH:mm:ss)"));
 		panel2.add(textfield);//add textfield to frame
 		dialog.add(panel1);
