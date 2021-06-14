@@ -9,8 +9,18 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.*;
 import javax.swing.*;
+
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 import java.io.*;
+import java.awt.*;
+import javax.swing.ButtonGroup;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JRadioButton;
 
 public class Main extends JFrame{
 	private JButton insertButton = new JButton("Insert stock data");
@@ -18,6 +28,8 @@ public class Main extends JFrame{
 	private JButton realTimeButton = new JButton("Real time count");
 	private JButton refreshButton = new JButton("Refresh");
 	private JFrame frame = new JFrame();
+	stockReadyMadeService ps = new stockReadyMadeService();
+	ArrayList<stockReadymade> pList = ps.getStockList();
 	
 	/*
 	 * This methods gather all function of this program
@@ -57,7 +69,6 @@ public class Main extends JFrame{
 		//add headText to textPanel
 		textPanel.add(headText1);
 		textPanel.add(headText2);
-		
 		insertButton.addActionListener(new ActionListener() { //insert
 			
 			@Override
@@ -81,7 +92,7 @@ public class Main extends JFrame{
 				//set insert
 				JDialog selectInsert = new JDialog();
 				selectInsert.setVisible(true);
-				selectInsert.setLayout(new GridLayout(2,1));
+				selectInsert.setLayout(new GridLayout(3,1));
 				selectInsert.setSize(600,300);
 				selectInsert.setDefaultCloseOperation(HIDE_ON_CLOSE);
 				
@@ -92,21 +103,24 @@ public class Main extends JFrame{
 				selectInsert.add(textPanel);
 				selectInsert.add(buttonPanel);
 				
-				JLabel ExpainText = new JLabel("원하는 택스트 추가해주세요");
-				JButton function1 = new JButton("Function1");
-				JButton function2 = new JButton("Function2");
+				JLabel ExpainText = new JLabel("Insert or Update");
+				JButton function1 = new JButton("Insert");
+				JButton function2 = new JButton("Update");
+				JButton function3 = new JButton("Insert file");
 				
 				textPanel.add(ExpainText);
 				ExpainText.setHorizontalAlignment(JLabel.CENTER);
 				buttonPanel.add(function1);
 				buttonPanel.add(function2);
+				buttonPanel.add(function3);
 				
 				function1.addActionListener(new ActionListener() { //insert
-					
+					private JTextArea theText;
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						
+						frame.dispose();
+						insertGUI mr = new insertGUI();
 					}
 				});
 				
@@ -115,7 +129,16 @@ public class Main extends JFrame{
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						
+					}
+				});
+
+				function3.addActionListener(new ActionListener() { //insert
+					
+					@Override
+					public void actionPerformed(ActionEvent e)
+					{
+						fileLoad("Stocks.txt");
+						JOptionPane.showMessageDialog(null, "File updated", "메시지", JOptionPane.INFORMATION_MESSAGE);
 					}
 				});
 			}
@@ -175,6 +198,75 @@ public class Main extends JFrame{
 	    } catch (IOException e) { }
 	  }
 	
+	public void fileLoad(String path){
+		String name;
+		int total;
+		String special;
+		String sortClass;
+		
+		try{
+			   BufferedReader br=new BufferedReader(new FileReader(new File(path)));  
+			   String str="";
+			  
+			   str=br.readLine(); 
+			  
+			   int i=0;
+			   while(str != null){  
+				 String [] temp =str.split(",");
+				name = temp[0];
+				total = Integer.parseInt(temp[1]);
+				special = temp[2];
+				sortClass = temp[3];
+				
+				stockReadymade p = null;
+				switch(temp[3]) {
+				case "Sauce"://가전제품 등록
+					//가전제품용 인스턴스(저장 공간 만들기)
+					p = new Sauce();
+					break;
+				case "Snack"://생필품 등록
+					//생필품용 인스턴스(저장 공간 만들기)
+					p = new Snack();
+					break;
+				case "Drink"://식품 등록
+					//식품용 인스턴스(저장 공간 만들기)
+					p = new Drink();
+					break;
+				default:
+					//잘못된 메뉴 번호 입력에 대한 메시지 출력(뷰 클래스)
+				}
+				
+				p.setName(name);
+				p.setAmount(total);
+				p.setCategory(temp[3]);
+				
+				if(p instanceof Sauce) {
+					Sauce ep = (Sauce)p;
+					ep.setOrigin(special);
+				}
+				else if(p instanceof Snack) {
+					Snack lp = (Snack)p;
+					lp.setOrigin(special);
+				}
+				else {
+					Drink fp = (Drink)p;
+					fp.setPeriod(special);
+				}
+				boolean result = ps.registProd(p);
+				if(result) {
+					//저장 완료 메시지 출력(뷰 클래스)
+					System.out.println("Saved");
+				}
+				else {
+					System.out.println("Not Saved");
+				}
+			   str=br.readLine();
+			   i++;
+			   }
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
 	public static void main(String args[]) {
 		Main runner = new Main();
 		

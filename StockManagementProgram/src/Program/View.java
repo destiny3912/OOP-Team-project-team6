@@ -34,6 +34,7 @@ public class View {
 		System.out.println("Search result");
 		System.out.println(p);
 	}
+	
 	public int updateNum() {
 		System.out.print("update nember: ");
 		
