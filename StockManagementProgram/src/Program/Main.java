@@ -29,7 +29,8 @@ public class Main extends JFrame{
 	private JButton refreshButton = new JButton("Refresh");
 	private JFrame frame = new JFrame();
 	stockReadyMadeService ps = new stockReadyMadeService();
-	ArrayList<stockReadymade> pList = ps.getStockList();
+	static ArrayList<stockReadymade> list = new ArrayList<stockReadymade>();
+	MyFrame frame1 = new MyFrame();
 	
 	/*
 	 * This methods gather all function of this program
@@ -120,19 +121,21 @@ public class Main extends JFrame{
 					public void actionPerformed(ActionEvent e)
 					{
 						frame.dispose();
-						insertGUI mr = new insertGUI();
+						insertGUI ig = new insertGUI();
 					}
 				});
 				
-				function2.addActionListener(new ActionListener() { //insert
+				function2.addActionListener(new ActionListener() { //update
 					
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
+						frame.dispose();
+						updateGUI ug = new updateGUI();
 					}
 				});
 
-				function3.addActionListener(new ActionListener() { //insert
+				function3.addActionListener(new ActionListener() { //file load
 					
 					@Override
 					public void actionPerformed(ActionEvent e)
@@ -212,54 +215,63 @@ public class Main extends JFrame{
 			  
 			   int i=0;
 			   while(str != null){  
-				 String [] temp =str.split(",");
+				   
+				//Split file data and inserted to temperate data.
+				String [] temp =str.split(",");
 				name = temp[0];
 				total = Integer.parseInt(temp[1]);
 				special = temp[2];
 				sortClass = temp[3];
-				
 				stockReadymade p = null;
+				
+				//Separate by 3 cases.
 				switch(temp[3]) {
-				case "Sauce"://가전제품 등록
-					//가전제품용 인스턴스(저장 공간 만들기)
+				case "Sauce":
+					//Case by Sauce
 					p = new Sauce();
 					break;
-				case "Snack"://생필품 등록
-					//생필품용 인스턴스(저장 공간 만들기)
+				case "Snack":
+					//Case by Snack
 					p = new Snack();
 					break;
-				case "Drink"://식품 등록
-					//식품용 인스턴스(저장 공간 만들기)
+				case "Drink":
+					//Case by Drink
 					p = new Drink();
 					break;
 				default:
-					//잘못된 메뉴 번호 입력에 대한 메시지 출력(뷰 클래스)
+					//Wrong Cases
 				}
-				
+				// Setting data three cases
 				p.setName(name);
 				p.setAmount(total);
 				p.setCategory(temp[3]);
 				
+				// Separate data and make new class, add arraylist
 				if(p instanceof Sauce) {
 					Sauce ep = (Sauce)p;
 					ep.setOrigin(special);
+					list.add(ep);
 				}
 				else if(p instanceof Snack) {
 					Snack lp = (Snack)p;
 					lp.setOrigin(special);
+					list.add(lp);
 				}
 				else {
 					Drink fp = (Drink)p;
 					fp.setPeriod(special);
+					list.add(fp);
 				}
 				boolean result = ps.registProd(p);
 				if(result) {
-					//저장 완료 메시지 출력(뷰 클래스)
+					//If save is correct
 					System.out.println("Saved");
 				}
 				else {
+					//If save is wrong
 					System.out.println("Not Saved");
 				}
+				//Read next new line
 			   str=br.readLine();
 			   i++;
 			   }

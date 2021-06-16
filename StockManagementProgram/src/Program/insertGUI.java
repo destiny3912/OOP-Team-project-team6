@@ -17,32 +17,34 @@ public class insertGUI extends Main implements ActionListener {
 	private JTextField total;
 	private JTextField special;
 	private JTextField sortClass;
-	JButton bt1 = new JButton("등록");
-	JButton bt2 = new JButton("취소");
+	JButton bt1 = new JButton("Confirm");
+	JButton bt2 = new JButton("Cancel");
 	MyFrame frame = new MyFrame();
 	JRadioButton female;
 	JRadioButton male;
 	ButtonGroup bg = new ButtonGroup();
 	
 	public insertGUI(){
-		frame.setTitle("회원등록");
+		// Set 4 category button and text field.
+		frame.setTitle("Insert");
 		frame.setSize(500, 330);
 		frame.setLocation(500, 300);
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-	
-		JLabel mName = new JLabel("제품 이름 :");
+
+		// Set the button for update and text field
+		JLabel mName = new JLabel("Name :");
 		mName.setBounds(27, 16, 90, 30);
 		frame.getContentPane().add(mName);
 		
-		JLabel mTotal = new JLabel("제품 개수 :");
+		JLabel mTotal = new JLabel("Amount :");
 		mTotal.setBounds(27, 56, 90, 30);
 		frame.getContentPane().add(mTotal);
 		
-		JLabel mSpecial = new JLabel("제품 기한 :");
+		JLabel mSpecial = new JLabel("Special :");
 		mSpecial.setBounds(27, 96, 90, 30);
 		frame.getContentPane().add(mSpecial);
 		
-		JLabel mSortClass = new JLabel("제품 품목 :");
+		JLabel mSortClass = new JLabel("Category :");
 		mSortClass.setBounds(27, 141, 90, 30);
 		frame.getContentPane().add(mSortClass);
 		
@@ -82,74 +84,81 @@ public class insertGUI extends Main implements ActionListener {
 		String memSex = null;
 		boolean  StringCheck = true;
 		if(e.getSource() == bt1){
+			// Setup string and integer by text
 			String memName = name.getText();
 			int memTotal = Integer.parseInt(total.getText());
 			String memSpecial = special.getText();
 			String memSortClass = sortClass.getText();
+			
+			// If text field gets null,
 			if(memName.equals("")){
-				JOptionPane.showMessageDialog(this, "제품 이름을 입력해 주세요", "메시지", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Enter name", "Message", JOptionPane.INFORMATION_MESSAGE);
 			}else if(memTotal == 0){
-				JOptionPane.showMessageDialog(this, "제품 개수를 입력해 주세요", "메시지", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Enter amount", "Message", JOptionPane.INFORMATION_MESSAGE);
 			}else if(memSpecial.equals("")){
-				JOptionPane.showMessageDialog(this, "제품 기한을 입력해 주세요", "메시지", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Enter special", "Message", JOptionPane.INFORMATION_MESSAGE);
 			}else if(memSortClass.equals("")){
-				JOptionPane.showMessageDialog(this, "제품 품목을 입력해 주세요", "메시지", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Enter category", "Message", JOptionPane.INFORMATION_MESSAGE);
 			}else{
-					int check = JOptionPane.showConfirmDialog(this, "입력한 내용이 맞습니까?\n" + 
+				//If all text field is not null,
+				
+					int check = JOptionPane.showConfirmDialog(this, "Is the right data?\n" + 
 							memName  + "," + memTotal + "," + memSpecial + "," + memSortClass,
-							"메시지", JOptionPane.INFORMATION_MESSAGE );
+							"Message", JOptionPane.INFORMATION_MESSAGE );
 					if(check == 0){
-						
-						String temp = memSortClass;
-						stockReadymade p = null;
+					// In the same method as fileload inserting.
+					String temp = memSortClass;
+					// Same method as file load
+					stockReadymade p = null;
 					switch(temp) {
-					case "Sauce"://가전제품 등록
-						//가전제품용 인스턴스(저장 공간 만들기)
+					case "Sauce":
 						p = new Sauce();
 						break;
-					case "Snack"://생필품 등록
-						//생필품용 인스턴스(저장 공간 만들기)
+					case "Snack":
 						p = new Snack();
 						break;
-					case "Drink"://식품 등록
-						//식품용 인스턴스(저장 공간 만들기)
+					case "Drink":
 						p = new Drink();
 						break;
 					default:
-						JOptionPane.showMessageDialog(this, "품목 입력 오류", "메시지", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(this, "Wrong", "Message", JOptionPane.INFORMATION_MESSAGE);
 					}
 					
 					p.setName(memName);
 					p.setAmount(memTotal);
 					p.setCategory(memSortClass);
+					
+					// Insert by three cases, and setup new message GUI
 					if(p instanceof Sauce) {
 						Sauce ep = (Sauce)p;
 						ep.setOrigin(memSpecial);
-						JOptionPane.showMessageDialog(this, "물품 등록.", "메시지", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(this, "Inserted.", "Message", JOptionPane.INFORMATION_MESSAGE);
 					}
 					else if(p instanceof Snack) {
 						Snack lp = (Snack)p;
 						lp.setOrigin(memSpecial);
-						JOptionPane.showMessageDialog(this, "물품 등록.", "메시지", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(this, "Inserted.", "Message", JOptionPane.INFORMATION_MESSAGE);
 					}
 					else if(p instanceof Drink){
 						Drink fp = (Drink)p;
 						fp.setPeriod(memSpecial);
-						JOptionPane.showMessageDialog(this, "물품 등록.", "메시지", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(this, "Inserted.", "Message", JOptionPane.INFORMATION_MESSAGE);
 					}
 					else {
-						JOptionPane.showMessageDialog(this, "품목 입력 오류", "메시지", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(this, "Error", "Message", JOptionPane.INFORMATION_MESSAGE);
 					}
-						
+					list.add(p);
 					}
 			}
 		}else if(e.getSource() == bt2){
+			// move to upperclass
 			frame.dispose();
 			super.setFrame();
 		}
 	}
 	
-	public boolean integerOrNot(String strData){ // 입력값이 숫자인지 문자인지 판별 : 
+	public boolean integerOrNot(String strData){ 
+		// Function it is integer or not
 		char[] charData = strData.toCharArray();
 		boolean check=true;
 		while(check){
