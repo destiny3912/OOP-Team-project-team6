@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 public class MyFrame extends JFrame {
 	public MyFrame() {
+		// Function for layout
 		getContentPane().setLayout(null);
 	}
 }

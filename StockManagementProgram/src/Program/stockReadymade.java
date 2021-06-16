@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 
 public class stockReadymade {
-	private String name;//제품명
-	private String readyMadeCategory; //카테고리
-	private int amount;//수량
+	private String name;//Name
+	private String readyMadeCategory; //Category
+	private int amount;//Amount
 	
 	public String getName() {
 		return name;
@@ -29,11 +29,9 @@ public class stockReadymade {
 	
 	@Override
 	public String toString() {
-		String str = "======================\n"
-				+ "Name: " + name + "\n"
+		String str = "Name: " + name + "\n"
 				+ "Amount: " + amount + "\n"
 				+ "Category: " + readyMadeCategory + "\n";
-		
 		return str;
 	}
 }

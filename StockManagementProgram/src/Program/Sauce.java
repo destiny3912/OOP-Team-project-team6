@@ -1,7 +1,7 @@
 package Program;
 
 public class Sauce extends stockReadymade {
-	private String snackTaste;//¸À
+	private String snackTaste;// Taste
 	public String getOrigin() {
 		return snackTaste;
 	}
